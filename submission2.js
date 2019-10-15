@@ -25,6 +25,11 @@ function readLine() {
 }
 
 
+   /* Sort the array in ascending order and descending order as both meet the given requirement. Compare the sorted arrays to the original
+       array and if the elements do not match perform the swap and count the swap opertions.Print the minimum value. */
+
+
+
 // Complete the lilysHomework function below.
 function lilysHomework(arr) {
     var n = arr.length;
