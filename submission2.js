@@ -24,30 +24,46 @@ function readLine() {
     return inputString[currentLine++];
 }
 
-//we will be counting every swap  while we are sorting the table 
 
 // Complete the lilysHomework function below.
 function lilysHomework(arr) {
-    var ans = 0;
-        for (let i = 0; i < arr.length - 1; i += 1) {
-          let minIndex = i;
-    
-          // Find minimum element in the rest of array.
-          for (let j = i + 1; j < arr.length; j += 1) {
-            
-            if (arr[j] < arr[minIndex]) {
-              minIndex = j;
-            }
-          }
-    
-          // If new minimum element has been found then swap it with current i-th element.
-          if (minIndex !== i) {
-            arr[minIndex] = [arr[i], arr[i] =  arr[minIndex]][0];
-            ans++;
-          }
+    var n = arr.length;
+
+    var ans1=0,ans2=0;
+    var copy=arr.slice();
+    var copy2=arr.slice();
+    copy.sort(function(a, b){return a-b});
+    var pos = [];
+    for(var i=0;i<n;i++)pos[arr[i]]=i;
+    for(var i=0;i<n;i++){
+        if(copy2[i]!=copy[i]){
+            ans1++;
+            pos[copy2[i]]=pos[copy[i]];
+            copy2[i] = [copy2[pos[copy[i]]], copy2[pos[copy[i]]] =  copy2[i]][0];
+            pos[copy[i]]=i;
         }
-    
-        return ans;
+    }
+
+    copy=arr.slice();
+    copy2=arr.slice();
+    copy.sort(function(a, b){return b-a});
+
+    for(var i=0;i<n;i++)pos[arr[i]]=i;
+
+
+    for(var i=0;i<n;i++){
+        if(copy2[i]!=copy[i]){
+            ans2++;
+            pos[copy2[i]]=pos[copy[i]];
+            copy2[i] = [copy2[pos[copy[i]]], copy2[pos[copy[i]]] =  copy2[i]][0];
+            pos[copy[i]]=i;
+        }
+    }
+
+   if (ans1>ans2)return ans2;
+   else 
+return ans1;
+
 }
 
 function main() {
